@@ -33,3 +33,11 @@ const deleteElements = (elements) => {
 };
 
 deleteElements('.promo__adv > img');
+
+const changeText = (element, text) => {
+    const elementToChangeText = document.querySelector(`${element}`);
+
+    elementToChangeText.textContent = text;
+};
+
+changeText(".promo__genre", "драма");

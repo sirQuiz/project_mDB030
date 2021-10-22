@@ -49,12 +49,21 @@ const changeDOM = {
               oldListElements.forEach((child) => {
                 child.remove();
               });
-              
+
               let sortedList = list.sort();
 
               for(let i = 0; i < sortedList.length; i++) {
+                let number = 0;
+
+                if(i >= 10 ){
+                    number = i;
+                } else {
+                    number = `0${i}`;
+                }
+
                 elementToChangeList.innerHTML += `
                     <li class="promo__interactive-item">
+                        <span>${number}</span>
                         ${sortedList[i]}
                         <div class="delete"></div>
                     </li>`;                  
@@ -66,5 +75,3 @@ changeDOM.deleteElements('.promo__adv > img');
 changeDOM.changeText(".promo__genre", "драма");
 changeDOM.changeBG(".promo__bg", "url(../img/bg.jpg)");
 changeDOM.changeList(".promo__interactive-list", movieDB.movies);
-
-console.log(movieDB.movies);

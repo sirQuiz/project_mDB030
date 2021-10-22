@@ -41,3 +41,11 @@ const changeText = (element, text) => {
 };
 
 changeText(".promo__genre", "драма");
+
+const changeBG = (element, image) => {
+    const elementToChangeBG = document.querySelector(`${element}`);
+
+    elementToChangeBG.style.backgroundImage = image;
+};
+
+changeBG(".promo__bg", "url(../img/bg.jpg)");

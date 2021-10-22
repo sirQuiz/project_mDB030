@@ -24,3 +24,12 @@ const movieDB = {
     ]
 };
 
+const deleteElements = (elements) => {
+    const elementsToDelete = document.querySelectorAll(`${elements}`);
+
+    elementsToDelete.forEach((item) => {
+        item.remove();
+    });
+};
+
+deleteElements('.promo__adv > img');

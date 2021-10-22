@@ -24,28 +24,47 @@ const movieDB = {
     ]
 };
 
-const deleteElements = (elements) => {
-    const elementsToDelete = document.querySelectorAll(`${elements}`);
+const changeDOM = {
+    deleteElements: (elements) => {
+        const elementsToDelete = document.querySelectorAll(`${elements}`);
 
-    elementsToDelete.forEach((item) => {
-        item.remove();
-    });
+        elementsToDelete.forEach((item) => {
+            item.remove();
+        });
+    },
+    changeText: (element, text) => {
+        const elementToChangeText = document.querySelector(`${element}`);
+
+        elementToChangeText.textContent = text;
+    },
+    changeBG: (element, image) => {
+        const elementToChangeBG = document.querySelector(`${element}`);
+    
+        elementToChangeBG.style.backgroundImage = image;
+    },
+    changeList: (parent, list) => {
+        const elementToChangeList = document.querySelector(`${parent}`),
+              oldListElements = elementToChangeList.querySelectorAll('li');              
+              
+              oldListElements.forEach((child) => {
+                child.remove();
+              });
+              
+              let sortedList = list.sort();
+
+              for(let i = 0; i < sortedList.length; i++) {
+                elementToChangeList.innerHTML += `
+                    <li class="promo__interactive-item">
+                        ${sortedList[i]}
+                        <div class="delete"></div>
+                    </li>`;                  
+              }
+    },
 };
 
-deleteElements('.promo__adv > img');
+changeDOM.deleteElements('.promo__adv > img');
+changeDOM.changeText(".promo__genre", "драма");
+changeDOM.changeBG(".promo__bg", "url(../img/bg.jpg)");
+changeDOM.changeList(".promo__interactive-list", movieDB.movies);
 
-const changeText = (element, text) => {
-    const elementToChangeText = document.querySelector(`${element}`);
-
-    elementToChangeText.textContent = text;
-};
-
-changeText(".promo__genre", "драма");
-
-const changeBG = (element, image) => {
-    const elementToChangeBG = document.querySelector(`${element}`);
-
-    elementToChangeBG.style.backgroundImage = image;
-};
-
-changeBG(".promo__bg", "url(../img/bg.jpg)");
+console.log(movieDB.movies);
